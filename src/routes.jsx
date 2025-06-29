@@ -4,9 +4,13 @@ import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import Welcome from "./pages/Welcome";
 import Room from "./pages/Room";
+import Example from "./pages/Example";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
+  { path: "/example", element: <Example /> },
+  { path: "/login", element: <Login /> },
   {
     path: "/dashboard",
     element: <Dashboard />,

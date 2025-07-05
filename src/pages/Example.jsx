@@ -1,11 +1,16 @@
 import { socket } from "../socketUser";
 import { useEffect, useState } from "react";
+import LogoutButton from "../components/logoutButton";
 
 function Example() {
   const [message, setMessage] = useState("");
   const [receiveMessage, setReceiveMessage] = useState([]);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    socket.auth = { token };
     socket.connect();
 
     socket.on("message", (msg) => {
@@ -14,6 +19,7 @@ function Example() {
 
     socket.on("connect_error", (error) => {
       console.error(error.message);
+      socket.disconnect();
     });
 
     return () => {
@@ -33,6 +39,12 @@ function Example() {
   return (
     <div>
       <h1>Hello World</h1>
+
+      <LogoutButton />
+
+      <br />
+      <br />
+
       <div>
         {receiveMessage.map((msg, index) => (
           <p key={index}>{msg}</p>

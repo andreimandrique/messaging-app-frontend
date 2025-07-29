@@ -10,13 +10,13 @@ function Welcome() {
       <h3>Welcome</h3>
       <ul>
         <li>
-          <Link to={`/dashboard/room/${roomA}`}>Room A</Link>
+          <Link to={`/dashboard/room/${roomA}`}>Room {roomA}</Link>
         </li>
         <li>
-          <Link to={`/dashboard/room/${roomB}`}>Room B</Link>
+          <Link to={`/dashboard/room/${roomB}`}>Room {roomB}</Link>
         </li>
         <li>
-          <Link to={`/dashboard/room/${roomC}`}>Room C</Link>
+          <Link to={`/dashboard/room/${roomC}`}>Room {roomC}</Link>
         </li>
       </ul>
     </div>

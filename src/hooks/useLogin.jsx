@@ -10,6 +10,7 @@ function useLogin() {
 
   async function handleLogin(e) {
     e.preventDefault();
+
     try {
       const res = await fetch("http://localhost:3000/login", {
         method: "POST",
@@ -23,7 +24,7 @@ function useLogin() {
 
       if (res.ok) {
         localStorage.setItem("token", data.token);
-        navigate("/example");
+        navigate("/dashboard");
       } else {
         console.error(data);
         setError(data.error);

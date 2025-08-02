@@ -2,10 +2,13 @@ import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { socket } from "../socket";
 import LogoutButton from "../components/logoutButton";
+import { jwtDecode } from "jwt-decode";
 
 function Dashboard() {
+  const token = localStorage.getItem("token");
+  const decode = jwtDecode(token);
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
     if (!token) return;
     socket.auth = { token };
     socket.connect();
@@ -21,11 +24,11 @@ function Dashboard() {
       socket.off("connect_error", handleConnectError);
       socket.disconnect();
     };
-  }, []);
+  }, [token]);
 
   return (
     <div>
-      <h1>Dashboard</h1>
+      <h1>Dashboard {decode.username}</h1>
       <LogoutButton />
       <Outlet />
     </div>

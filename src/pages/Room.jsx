@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { socket } from "../socket";
+import { Link } from "react-router-dom";
 
 function Room() {
   const { roomId } = useParams();
@@ -10,8 +11,9 @@ function Room() {
   useEffect(() => {
     socket.emit("joinRoom", roomId);
 
-    socket.on("receiveMessage", (message) => {
-      setReceiveMessage((prev) => [...prev, message]);
+    socket.on("receiveMessage", (message, username) => {
+      const messageContent = { message, username };
+      setReceiveMessage((prev) => [...prev, messageContent]);
     });
 
     return () => {
@@ -30,9 +32,14 @@ function Room() {
   return (
     <div>
       <h3>Room {roomId}</h3>
+      <Link to={"/dashboard"}>Go back</Link>
+      <br />
+      <br />
       <div>
-        {receiveMessage.map((message, index) => (
-          <p key={index}>{message}</p>
+        {receiveMessage.map((messageContent, index) => (
+          <p key={index}>
+            <strong>{messageContent.username}</strong> {messageContent.message}
+          </p>
         ))}
       </div>
       <input

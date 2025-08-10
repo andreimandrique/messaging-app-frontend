@@ -5,10 +5,12 @@ import Dashboard from "./pages/Dashboard";
 import Welcome from "./pages/Welcome";
 import Room from "./pages/Room";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
   { path: "/login", element: <Login /> },
+  { path: "/register", element: <Register /> },
   {
     path: "/dashboard",
     element: <Dashboard />,

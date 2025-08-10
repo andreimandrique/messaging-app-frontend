@@ -2,14 +2,19 @@ import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { socket } from "../socket";
 import LogoutButton from "../components/logoutButton";
-import { jwtDecode } from "jwt-decode";
+import useVerify from "../hooks/useVerify";
 
 function Dashboard() {
   const token = localStorage.getItem("token");
-  const decode = jwtDecode(token);
+  const verify = useVerify(token);
 
   useEffect(() => {
-    if (!token) return;
+    verify();
+
+    if (!token) {
+      return;
+    }
+
     socket.auth = { token };
     socket.connect();
 
@@ -24,11 +29,11 @@ function Dashboard() {
       socket.off("connect_error", handleConnectError);
       socket.disconnect();
     };
-  }, [token]);
+  }, [token, verify]);
 
   return (
     <div>
-      <h1>Dashboard {decode.username}</h1>
+      <h1>Dashboard</h1>
       <LogoutButton />
       <Outlet />
     </div>

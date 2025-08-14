@@ -3,10 +3,20 @@ import { Outlet } from "react-router-dom";
 import { socket } from "../socket";
 import LogoutButton from "../components/logoutButton";
 import useVerify from "../hooks/useVerify";
+import { jwtDecode } from "jwt-decode";
 
 function Dashboard() {
   const token = localStorage.getItem("token");
   const verify = useVerify(token);
+
+  let username = null;
+
+  if (token) {
+    const decoded = jwtDecode(token);
+    username = decoded.username;
+  } else {
+    username = "default";
+  }
 
   useEffect(() => {
     verify();
@@ -33,7 +43,7 @@ function Dashboard() {
 
   return (
     <div>
-      <h1>Dashboard</h1>
+      <h1>Dashboard {username}</h1>
       <LogoutButton />
       <Outlet />
     </div>

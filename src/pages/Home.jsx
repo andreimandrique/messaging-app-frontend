@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
+import useHome from "../hooks/useHome";
 
 function Home() {
+  const { message, loading, error } = useHome();
+
+  if (loading) return <h1>Loading...</h1>;
+
+  if (error) return <p className="error-text">{error}</p>;
+
   return (
     <div>
-      <h1>Realtime Messaging App</h1>
+      <h1>{message}</h1>
       <ul>
         <li>
           <Link to={"/login"}>Log In</Link>

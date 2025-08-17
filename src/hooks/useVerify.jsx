@@ -16,6 +16,7 @@ function useVerify(token) {
       }
     } catch (error) {
       console.error(error);
+      navigate("/");
     }
   }
 

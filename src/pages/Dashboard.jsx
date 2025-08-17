@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { socket } from "../socket";
-import LogoutButton from "../components/logoutButton";
+import LogoutButton from "../components/logoutButton.jsx";
 import useVerify from "../hooks/useVerify";
 import { jwtDecode } from "jwt-decode";
 

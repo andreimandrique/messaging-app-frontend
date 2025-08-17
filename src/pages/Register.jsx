@@ -1,4 +1,5 @@
 import useRegister from "../hooks/useRegister";
+import { Link } from "react-router-dom";
 
 function Register() {
   const {
@@ -15,8 +16,16 @@ function Register() {
   return (
     <div>
       <h1>Register</h1>
-      {error && <p>{error}</p>}
-      {success && <p>{success}</p>}
+      <ul>
+        <li>
+          <Link to={"/"}>Home</Link>
+        </li>
+        <li>
+          <Link to={"/login"}>Log In</Link>
+        </li>
+      </ul>
+      {error && <p className="error-text">{error}</p>}
+      {success && <p className="success-text">{success}</p>}
       <form>
         <label htmlFor="username">
           <p>Username:</p>
@@ -54,7 +63,7 @@ function Register() {
         <br />
         <br />
         <div>
-          <button onClick={handleRegister}>Login</button>
+          <button onClick={handleRegister}>Register</button>
         </div>
       </form>
     </div>

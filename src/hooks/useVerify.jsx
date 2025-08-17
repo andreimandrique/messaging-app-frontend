@@ -5,7 +5,7 @@ function useVerify(token) {
 
   async function verify() {
     try {
-      const res = await fetch("http://localhost:3000/verify", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/verify`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

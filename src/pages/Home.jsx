@@ -37,6 +37,13 @@ function Home() {
           <b>Password:</b> 123
         </li>
       </ul>
+      <h2>Special Note</h2>
+      <p>
+        I did not apply data persistance to the message but showcase the
+        realtime features. To test this properly open the 2 account between 2
+        different browser example Google Chrome and Microsoft Edge join one room
+        and start chatting.
+      </p>
     </div>
   );
 }
